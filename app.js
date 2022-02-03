@@ -4,7 +4,7 @@ const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 const path = require("path")
 const port = 3000
-const rIndex = require("../routers/index")
+const rIndex = require("./routers/index")
 
 mongoose.connect("mongodb+srv://islomjon:islomjon95@cluster0.wdd8j.mongodb.net/test")
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname , "public")))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-app.use(rIndex)
+app.use("/api/movies",rIndex)
 
 app.listen(port, ()=>{
     console.log("Server running");
