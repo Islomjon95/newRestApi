@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const path = require("path")
 const port = 3000
 const rIndex = require("./routers/index")
+const rDirector = require("./routers/director")
 
 mongoose.connect("mongodb+srv://islomjon:islomjon95@cluster0.wdd8j.mongodb.net/test")
 
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 app.use("/api/movies",rIndex)
+app.use("/api/directors" , rDirector)
 
 app.listen(port, ()=>{
     console.log("Server running");
