@@ -15,14 +15,9 @@ router.get("/" , (req, res)=>{
 })
 
 router.post("/" , (req, res)=>{
-    const db = new rest({
-        title: req.body.title,
-        category: req.body.category,
-        country: req.body.country,
-        year: req.body.year,
-        director: req.body.director,
-        imdb_score: req.body.imdb_score
-    })
+    
+    const db = new rest(req.body)
+        
     db.save((err, data)=>{
         if (err) {
             console.log(err);
@@ -33,7 +28,7 @@ router.post("/" , (req, res)=>{
 })
 
 router.get("/:movie_id" , (req, res)=>{
-    rest.findById(req.params.id , (err, data)=>{
+    rest.findById(req.params.movie_id , (err, data)=>{
         if(err){
             console.log(err);
         }
@@ -43,6 +38,34 @@ router.get("/:movie_id" , (req, res)=>{
     })
 })
 
+
+router.put("/:movie_id" , (req, res)=>{
+    const promise = rest.findByIdAndUpdate(req.params.movie_id , req.body)
+    promise.then(data=>{
+        res.json(data)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
+
+
+router.delete("/:movie_id" , (req, res)=>{
+    const promise = rest.findByIdAndRemove(req.params.movie_id)
+    promise.then(data=>{
+        res.json(data)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
+
+router.get("/top/top10" , (req, res)=>{
+    const promise = rest.find({}).sort({imdb_score: 1}).limit(4)
+    promise.then(data=>{
+        res.json(data)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
 
 
 
