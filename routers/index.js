@@ -67,6 +67,16 @@ router.get("/top/top10" , (req, res)=>{
     })
 })
 
-
+router.get("/between/:start_year/:end_year" , (req, res)=>{
+    const{start_year , end_year}=req.params
+    const promise = rest.find({
+        year:{"$gte": start_year , "$lte": end_year}
+    })
+    promise.then(data=>{
+        res.json(data)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
 
 module.exports = router

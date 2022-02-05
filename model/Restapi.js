@@ -6,7 +6,7 @@ title: String,
 category: String,
 country: String,
 year: Number,
-director: String,
+director: schema.Types.ObjectId,
 imdb_score: Number
 
 
