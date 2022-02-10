@@ -7,4 +7,4 @@ const director = new schema({
     bio: String
 })
 
-module.exports = mongoose.model("user" , director)
+module.exports = mongoose.model("foydalanuvchi" , director)

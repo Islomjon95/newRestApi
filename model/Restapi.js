@@ -6,10 +6,10 @@ title: String,
 category: String,
 country: String,
 year: Number,
-director: Schema.Types.ObjectId,
+director_id: schema.Types.ObjectId,
 imdb_score: Number
 
 
 })
 
-module.exports = mongoose.model("RestApi" , rest )
+module.exports = mongoose.model("cinema" , rest )

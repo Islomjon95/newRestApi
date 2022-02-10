@@ -3,16 +3,16 @@ const router = express()
 const director = require("../model/Director")
 
 
-router.get("/" , (req, res)=>{
-    const promise = director.find({})
-     promise.then(data=>{
-         res.json(data)
-     }).catch(err=>{
-         console.log(err);
-     })
-})
+// router.get("/" , (req, res)=>{
+//     const promise = director.find({})
+//      promise.then(data=>{
+//          res.json(data)
+//      }).catch(err=>{
+//          console.log(err);
+//      })
+// })
 
-router.post("/" , (req, res)=>{
+router.post("/api/directors" , (req, res)=>{
     const db = new director(req.body)
     const promise = db.save()
     promise.then(data=>{
@@ -22,33 +22,33 @@ router.post("/" , (req, res)=>{
     })
 })
 
-router.get("/" , (req, res)=>{
+router.get("/api/directors" , (req, res)=>{
     const promise = director.aggregate([
         {
             $lookup:{
-                from: "RestApis",
+                from: "cinemas",
                 localField: "_id",
                 foreignField: "director_id",
-                ass: "film"
+                as: "cinema"
             }
         },
 
         {
             $unwind:{
-                path: "film"
+                path: "$cinema"
             }
         },
 
         {
             $group:{
                 _id:{
-                    _id: "push",
+                    _id: "$push",
                     name: "$name",
                     surname: "$surname",
                     bio: "$bio"
                 },
-                films: {
-                    $push: "$film"
+                cinemas: {
+                    $push: "$cinema"
                 }
             }
         }
@@ -60,3 +60,5 @@ router.get("/" , (req, res)=>{
         console.log(err);
     })
 })
+
+module.exports = router

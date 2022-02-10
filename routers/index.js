@@ -15,13 +15,13 @@ router.get("/" , (req, res)=>{
 })
 
 router.post("/" , (req, res)=>{
-    const {title, category, country, year, director, imdb_score} = req.body
+    const {title, category, country, year, director_id, imdb_score} = req.body
     const db = new rest({
         title: title,
         category: category,
         country: country,
         year: year,
-        director: director,
+        director_id: director_id,
         imdb_score: imdb_score
     })
     const promise = db.save()
