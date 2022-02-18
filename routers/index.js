@@ -15,6 +15,7 @@ router.get("/" , (req, res)=>{
 })
 
 router.post("/" , (req, res)=>{
+<<<<<<< HEAD
     const {title, category, country, year, director_id, imdb_score} = req.body
     const db = new rest({
         title: title,
@@ -30,6 +31,17 @@ router.post("/" , (req, res)=>{
     })
     .catch(err=>{
         console.log(err);
+=======
+    
+    const db = new rest(req.body)
+        
+    db.save((err, data)=>{
+        if (err) {
+            console.log(err);
+        }else{
+            res.json(data)
+        }
+>>>>>>> main
     })
 })
 
@@ -46,6 +58,7 @@ router.get("/:movie_id" , (req, res)=>{
 
 
 router.put("/:movie_id" , (req, res)=>{
+<<<<<<< HEAD
     rest.findByIdAndUpdate(req.params.movie_id , req.body, (err, data)=>{
         if(err){
             console.log(err);
@@ -91,6 +104,45 @@ router.get("/between/:start_year/:end_year", (req, res)=>{
     })
 })
 
+=======
+    const promise = rest.findByIdAndUpdate(req.params.movie_id , req.body)
+    promise.then(data=>{
+        res.json(data)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
+>>>>>>> main
 
+
+router.delete("/:movie_id" , (req, res)=>{
+    const promise = rest.findByIdAndRemove(req.params.movie_id)
+    promise.then(data=>{
+        res.json(data)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
+
+router.get("/top/top10" , (req, res)=>{
+    const promise = rest.find({}).sort({imdb_score: 1}).limit(4)
+    promise.then(data=>{
+        res.json(data)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
+
+router.get("/between/:start_year/:end_year" , (req, res)=>{
+    const{start_year , end_year}=req.params
+    const promise = rest.find({
+        year:{"$gte": start_year , "$lte": end_year}
+    })
+    promise.then(data=>{
+        res.json(data)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
 
 module.exports = router

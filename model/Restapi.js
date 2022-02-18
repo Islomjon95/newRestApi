@@ -6,7 +6,11 @@ title: String,
 category: String,
 country: String,
 year: Number,
+<<<<<<< HEAD
 director_id: schema.Types.ObjectId,
+=======
+director: schema.Types.ObjectId,
+>>>>>>> main
 imdb_score: Number
 
 
