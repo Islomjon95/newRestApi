@@ -1,0 +1,49 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    a.navbar-brand(href='#') Online-Market
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          button.btn.btn-primary(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal')
+            | Register
+          #exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  h5#exampleModalLabel.modal-title Modal title
+                  button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                .modal-body
+                  form(method='POST')
+                    .mb-3
+                      label.form-label(for='exampleInputEmail1') Login
+                      input#exampleInputEmail1.form-control(type='text' placeholder='Loginni kirit' aria-describedby='emailHelp' name='username')
+                    .mb-3
+                      label.form-label(for='exampleInputPassword1') Password
+                      input#exampleInputPassword1.form-control(type='password' name='password')
+                    button.btn.btn-primary(type='submit') Ro'yhatdan o'tish
+                .modal-footer
+                  button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                  
+        li.nav-item
+          button.btn.btn-success.ms-2(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal1')
+            | KIRISH
+          #exampleModal1.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  h5#exampleModalLabel.modal-title Autentifikatsiya
+                  button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                .modal-body
+                  form(method='POST' action="/user/aut")
+                    .mb-3
+                      label.form-label(for='exampleInputEmail1') Login
+                      input#exampleInputEmail1.form-control(type='text' placeholder='Loginni kirit' aria-describedby='emailHelp' name='username')
+                    .mb-3
+                      label.form-label(for='exampleInputPassword1') Password
+                      input#exampleInputPassword1.form-control(type='password' name='password')
+                      button(type='submit').btn.btn-primary Tasdiqlash
+                      .modal-footer
+                  button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+       

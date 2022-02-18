@@ -29,26 +29,26 @@ router.get("/api/directors" , (req, res)=>{
                 from: "cinemas",
                 localField: "_id",
                 foreignField: "director_id",
-                as: "cinema"
+                as: "filmlar"
             }
         },
 
         {
             $unwind:{
-                path: "$cinema"
+                path: "$filmlar"
             }
         },
 
         {
             $group:{
                 _id:{
-                    _id: "$push",
+                    _id: "$_id",
                     name: "$name",
                     surname: "$surname",
                     bio: "$bio"
                 },
-                cinemas: {
-                    $push: "$cinema"
+                flimlar: {
+                    $push: "$filmlar"
                 }
             }
         }
