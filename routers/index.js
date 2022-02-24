@@ -3,6 +3,7 @@ const router = express.Router()
 const rest = require("../model/Restapi")
 
 
+
 router.get("/" , (req, res)=>{
     rest.find({} , (err , data)=>{
         if (err) {

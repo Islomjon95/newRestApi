@@ -2,13 +2,15 @@ const express = require('express')
 const router = express.Router()
 const userdb = require("../model/User")
 const bcryptjs = require("bcryptjs")
+const jwt =  require("jsonwebtoken")
+const { api_secret_key } = require('../config')
 
 
-router.get("/users" , (req, res)=>{
+router.get("/" , (req, res)=>{
     res.render("index")
 })
 
-router.post("/users" , (req, res)=>{
+router.post("/" , (req, res)=>{
     const {username , password} = req.body
     bcryptjs.hash(password , 10 , (err , hash)=>{
         const db = new userdb({
@@ -46,7 +48,9 @@ router.post("/user/aut" , (req, res)=>{
                     res.render("error")
                 }
                 else{
-                    res.json("Salom sahifangizga hush kelibsiz")
+                    const payload = {username}
+                    const token = jwt.sign(payload , "SecretKey")  //ExpiresIn bor edi;
+                    res.send(token)
                     
                 }
             })

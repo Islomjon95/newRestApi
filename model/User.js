@@ -12,4 +12,4 @@ const userdb = new schema({
     }
 })
 
-module.exports = mongoose.model("CreateUser" , userdb)
+module.exports = mongoose.model("userlog" , userdb)
