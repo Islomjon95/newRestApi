@@ -55,7 +55,7 @@ router.get("/api/directors" , (req, res)=>{
     ])
 
     promise.then(data=>{
-        res.json(data)
+        res.send(data)
     }).catch(err=>{
         console.log(err);
     })

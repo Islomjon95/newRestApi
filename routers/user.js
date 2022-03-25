@@ -12,7 +12,7 @@ router.get("/" , (req, res)=>{
 
 router.post("/" , (req, res)=>{
     const {username , password} = req.body
-    bcryptjs.hash(password , 10 , (err , hash)=>{
+    bcryptjs.hash(password ,10 , (err , hash)=>{
         const db = new userdb({
             username, 
             password: hash

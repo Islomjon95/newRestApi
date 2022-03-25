@@ -6,16 +6,16 @@ const tokenmidware = require("../middleware/tokenmidware")
 
 chai.use(chaiHttp)
 
-// describe("api movesni testdan o'tkazish" , ()=>{
-//     it("get orqali api moviesni ko'rish", (done)=>{
-//         chai.request(server)
-//         .get("/api/movies")
-//         .end((err , res)=>{
-//             res.should.have.status(200)
-//             done()
-//         })
-//     })
-// })
+describe("api movesni testdan o'tkazish" , ()=>{
+    it("get orqali api moviesni ko'rish", (done)=>{
+        chai.request(server)
+        .get("/api/movies")
+        .end((err , res)=>{
+            res.should.have.status(200)
+            done()
+        })
+    })
+})
 
 // describe("autentificate qismini testdan o'tqazish" , ()=>{
 //     before((done) => {
